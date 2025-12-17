@@ -2,7 +2,7 @@
 set -e
 
 # Entradas com valores padrão
-PORT="${INPUT_MYSQL_PORT:-32768}"
+PORT="${INPUT_MYSQL_PORT:-3306}"
 ROOT_PASSWORD="${INPUT_MYSQL_ROOT_PASSWORD:-root}"
 DATABASE="${INPUT_MYSQL_DATABASE:-}"
 USER="${INPUT_MYSQL_USER:-}"
@@ -10,12 +10,16 @@ USER_PASSWORD="${INPUT_MYSQL_PASSWORD:-}"
 
 echo "🐳 Starting MySQL Docker container on Linux..."
 
+sudo mkdir -p /var/run/mysqld
+sudo chmod 777 /var/run/mysqld
+
 docker run -d \
   --name mysql \
   -e MYSQL_ROOT_PASSWORD="$ROOT_PASSWORD" \
   ${DATABASE:+-e MYSQL_DATABASE="$DATABASE"} \
   ${USER:+-e MYSQL_USER="$USER"} \
   ${USER:+-e MYSQL_PASSWORD="$USER_PASSWORD"} \
+  -v /var/run/mysqld:/var/run/mysqld \
   -p "$PORT":3306 \
   mysql:8.0
 

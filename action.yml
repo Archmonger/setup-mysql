@@ -14,7 +14,7 @@ inputs:
   mysql_port:
     description: 'Port to expose MySQL on the host'
     required: false
-    default: '32768'
+    default: '3306'
   mysql_database:
     description: 'Database to create on container start'
     required: false

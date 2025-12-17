@@ -11,7 +11,7 @@ $userPassword = $env:mysql_password
 # Fallbacks for optional inputs
 # --------------------------------
 if (-not $rootPassword) { $rootPassword = "root" }
-if (-not $port) { $port = 32768 }
+if (-not $port) { $port = 3306 }
 if (-not $dbName) { $dbName = "my_db" }
 if (-not $user) { $user = "dev" }
 if (-not $userPassword) { $userPassword = "devpass" }
